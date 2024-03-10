@@ -5,6 +5,7 @@ import { promisify } from 'util';
 import path from 'path';
 import fs from 'fs';
 import ProgressBar from 'progress';
+import { fileURLToPath } from 'url';
 
 // prompts.override(require('yargs').argv);
 
@@ -46,7 +47,9 @@ export async function doDownload(fileUrl, fileName, title) {
       total: parseInt(headers['content-length'])
     });
 
-    const writer = fs.createWriteStream("files/" + fileName);
+    const __filenameNew = fileURLToPath(import.meta.url);
+    const __dirnameNew = path.dirname(__filenameNew);
+    const writer = fs.createWriteStream(path.resolve(__dirnameNew, "files", fileName));
 
     data.on('data', (chunk) => progressBar.tick(chunk.length))
     data.pipe(writer);
@@ -67,7 +70,7 @@ export async function doAsk() {
       return true;
     };
 
-    await prompts([
+    const questions = [
       {
         type: 'multiselect',
         name: 'text',
@@ -80,6 +83,8 @@ export async function doAsk() {
         message: 'Can you confirm?',
         initial: true
       }
-    ], { onSubmit, onCancel });
+    ];
+
+    await prompts(questions, { onSubmit, onCancel });
   })();
 }
