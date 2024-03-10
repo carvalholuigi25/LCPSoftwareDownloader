@@ -1,4 +1,8 @@
 {
+  "name": "lcpsoftwaredownloader",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {},
   "type": "module",
   "dependencies": {
     "@types/yargs": "^17.0.32",
