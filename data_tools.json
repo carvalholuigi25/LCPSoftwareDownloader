@@ -9,7 +9,7 @@
     {
         "id": 2,
         "title": "VMWare Workstation Player",
-        "value": "https://download3.vmware.com/software/WKST-PLAYER-1751/VMware-player-full-17.5.1-23298084.exe?AuthKey=exp=1710156570~hmac=927e4869698dcf169bb266120bc575673bff415980a235cf2f02cac048049412&params=%7B%22sourcefilesize%22%3A%22562.71+MB%22%2C%22dlgcode%22%3A%22WKST-PLAYER-1751%22%2C%22languagecode%22%3A%22en%22%2C%22source%22%3A%22DOWNLOADS%22%2C%22downloadtype%22%3A%22manual%22%2C%22downloaduuid%22%3A%2282f2423d-44ec-4ca9-b291-7016f840ddab%22%2C%22dlgtype%22%3A%22Product+Binaries%22%2C%22productversion%22%3A%2217.5.1%22%2C%22productfamily%22%3A%22VMware+Workstation+Player%22%7D",
+        "value": "https://download3.vmware.com/software/WKST-PLAYER-1751/VMware-player-full-17.5.1-23298084.exe",
         "name": "VMware-player-full-17.5.1-23298084.exe",
         "type": "tools"
     },
