@@ -38,7 +38,10 @@ export async function doDownload(fileUrl, fileName, title) {
 
     const writer = fs.createWriteStream(path.resolve(__dirnameNew, "files", fileName));
 
-    data.on('data', (chunk) => progressBar.tick(chunk.length))
+    data.on('data', (chunk) => progressBar.tick(chunk.length));
+    data.on('end', () => {
+      console.log("Done downloading " + title + "!\r\nThe file is located at " + path.resolve(__dirnameNew, "files", fileName));
+    });
     data.pipe(writer);
   } catch (error) {
     console.error(error);
@@ -56,13 +59,13 @@ export async function doAsk() {
       if (answer.length > 0) {
         await doDownload(prompt.choices[0].value, prompt.choices[0].name, prompt.choices[0].title);
       } else {
-        console.log('You should select at least one or more operating system(s) to download!');
+        console.log('You should select at least one operating system to download!');
       }
     } else if (prompt.name == "toolsselect") {
       if (answer.length > 0) {
         await doDownload(prompt.choices[0].value, prompt.choices[0].name, prompt.choices[0].title);
       } else {
-        console.log('You should select at least one or more tool(s) to download!');
+        console.log('You should select at least one tool to download!');
       }
     } else {
       if (answer.length == 0) {
@@ -95,15 +98,15 @@ export async function doAsk() {
       ]
     },
     {
-      type: prev => prev == 'opsystems' ? 'multiselect' : null,
+      type: prev => prev == 'opsystems' ? 'select' : null,
       name: 'osselect',
-      message: 'Select the operating system(s)',
+      message: 'Select the operating system',
       choices: getDataOS()
     },
     {
-      type: prev => prev == 'tools' ? 'multiselect' : null,
+      type: prev => prev == 'tools' ? 'select' : null,
       name: 'toolsselect',
-      message: 'Select the tool(s)',
+      message: 'Select the tool',
       choices: getDataTools()
     }
   ];
