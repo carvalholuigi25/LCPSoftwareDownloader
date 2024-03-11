@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Oracle VM Virtualbox",
+        "value": "https://download.virtualbox.org/virtualbox/7.0.14/VirtualBox-7.0.14-161095-Win.exe",
+        "name": "VirtualBox-7.0.14-161095-Win.exe",
+        "type": "tools"
+    },
+    {
+        "id": 2,
+        "title": "VMWare Workstation Player",
+        "value": "https://download3.vmware.com/software/WKST-PLAYER-1751/VMware-player-full-17.5.1-23298084.exe?AuthKey=exp=1710156570~hmac=927e4869698dcf169bb266120bc575673bff415980a235cf2f02cac048049412&params=%7B%22sourcefilesize%22%3A%22562.71+MB%22%2C%22dlgcode%22%3A%22WKST-PLAYER-1751%22%2C%22languagecode%22%3A%22en%22%2C%22source%22%3A%22DOWNLOADS%22%2C%22downloadtype%22%3A%22manual%22%2C%22downloaduuid%22%3A%2282f2423d-44ec-4ca9-b291-7016f840ddab%22%2C%22dlgtype%22%3A%22Product+Binaries%22%2C%22productversion%22%3A%2217.5.1%22%2C%22productfamily%22%3A%22VMware+Workstation+Player%22%7D",
+        "name": "VMware-player-full-17.5.1-23298084.exe",
+        "type": "tools"
+    },
+    {
+        "id": 3,
+        "title": "QEmu",
+        "value": "https://qemu.weilnetz.de/w64/qemu-w64-setup-20231224.exe",
+        "name": "qemu-w64-setup-20231224.exe",
+        "type": "tools"
+    },
+    {
+        "id": 4,
+        "title": "Rufus",
+        "value": "https://github.com/pbatard/rufus/releases/download/v4.4/rufus-4.4.exe",
+        "name": "rufus-4.4.exe",
+        "type": "tools"
+    }
+]

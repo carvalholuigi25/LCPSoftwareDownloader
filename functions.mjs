@@ -10,8 +10,12 @@ import { fileURLToPath } from 'url';
 const __filenameNew = fileURLToPath(import.meta.url);
 const __dirnameNew = path.dirname(__filenameNew);
 
-export function getAryLinks() {
-  return JSON.parse(fs.readFileSync(path.resolve(__dirnameNew, "data.json"), 'utf8'));
+export function getDataOS() {
+  return JSON.parse(fs.readFileSync(path.resolve(__dirnameNew, "data_os.json"), 'utf8'));
+}
+
+export function getDataTools() {
+  return JSON.parse(fs.readFileSync(path.resolve(__dirnameNew, "data_tools.json"), 'utf8'));
 }
 
 export async function doDownload(fileUrl, fileName, title) {
@@ -44,11 +48,21 @@ export async function doDownload(fileUrl, fileName, title) {
 
 export async function doAsk() {
   const onSubmit = async (prompt, answer) => {
-    if (prompt.name == "softselect") {
+    if(prompt.choices.length > 0) {
+      prompt.choices = prompt.choices.filter(x => x.value.includes(answer));
+    }
+
+    if (prompt.name == "osselect") {
       if (answer.length > 0) {
         await doDownload(prompt.choices[0].value, prompt.choices[0].name, prompt.choices[0].title);
       } else {
-        console.log('You should select at least one or more softwares to download!');
+        console.log('You should select at least one or more operating system(s) to download!');
+      }
+    } else if (prompt.name == "toolsselect") {
+      if (answer.length > 0) {
+        await doDownload(prompt.choices[0].value, prompt.choices[0].name, prompt.choices[0].title);
+      } else {
+        console.log('You should select at least one or more tool(s) to download!');
       }
     } else {
       if (answer.length == 0) {
@@ -69,17 +83,28 @@ export async function doAsk() {
       message: 'Select the type of software',
       choices: [
         {
-          title: "Linux",
-          value: "linux",
-          name: "linux"
+          title: "Operating Systems",
+          value: "opsystems",
+          name: "opsystems"
+        },
+        {
+          title: "Tools",
+          value: "tools",
+          name: "tools"
         }
       ]
     },
     {
-      type: 'multiselect',
-      name: 'softselect',
-      message: 'Select the software',
-      choices: getAryLinks()
+      type: prev => prev == 'opsystems' ? 'multiselect' : null,
+      name: 'osselect',
+      message: 'Select the operating system(s)',
+      choices: getDataOS()
+    },
+    {
+      type: prev => prev == 'tools' ? 'multiselect' : null,
+      name: 'toolsselect',
+      message: 'Select the tool(s)',
+      choices: getDataTools()
     }
   ];
 
